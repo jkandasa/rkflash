@@ -246,3 +246,14 @@ internal/sim            Simulated device for tests
 internal/logx           Leveled logging
 testdata                Reference images for tests
 ```
+
+## License
+
+Copyright 2026 Jeeva Kandasamy.
+
+Licensed under the [Apache License 2.0](LICENSE).
+
+Protocol and format details follow the behavior of Rockchip
+[rkdeveloptool](https://github.com/rockchip-linux/rkdeveloptool) and
+[U-Boot](https://source.denx.de/u-boot/u-boot) `tools/rkcommon.c`.
+rkflash reimplements them and contains no code from either project.
