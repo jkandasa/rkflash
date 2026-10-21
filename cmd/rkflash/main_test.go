@@ -69,6 +69,17 @@ func pattern(n int) []byte {
 	return b
 }
 
+func TestVersion(t *testing.T) {
+	for _, args := range [][]string{{"--version"}, {"-version"}, {"version"}} {
+		out := mustRun(t, args...)
+		for _, k := range []string{"rkflash ", "commit:", "build time:", "go version: go", "platform:"} {
+			if !strings.Contains(out, k) {
+				t.Errorf("%v: output lacks %q:\n%s", args, k, out)
+			}
+		}
+	}
+}
+
 func TestHelpAndUsage(t *testing.T) {
 	out := mustRun(t, "help")
 	for _, s := range []string{"download-boot (db)", "write-part (wlx)", "Image commands", "-vv"} {

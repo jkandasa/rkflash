@@ -17,9 +17,6 @@ import (
 	"github.com/jkandasa/rkflash/internal/logx"
 )
 
-// version is set at build time: go build -ldflags "-X main.version=1.2.3".
-var version = "dev"
-
 // globals holds options accepted by every command.
 type globals struct {
 	device       string
@@ -205,7 +202,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 	root := flag.NewFlagSet("rkflash", flag.ContinueOnError)
 	root.SetOutput(stderr)
 	g.register(root)
-	showVersion := root.Bool("version", false, "print the version")
+	showVersion := root.Bool("version", false, "print version and build details")
 	root.Usage = func() { printUsage(stderr) }
 	if err := root.Parse(args); err != nil {
 		if errors.Is(err, flag.ErrHelp) {
@@ -214,7 +211,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 		return 2
 	}
 	if *showVersion {
-		fmt.Fprintf(stdout, "rkflash %s\n", version)
+		printVersion(stdout)
 		return 0
 	}
 	rest := root.Args()

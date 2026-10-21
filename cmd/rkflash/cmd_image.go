@@ -306,9 +306,9 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="2207", MODE="0660", TAG+="uaccess"`)
 
 	register(&command{
 		name: "version", group: "Other", nargs: [2]int{0, 0},
-		summary: "Print the version",
+		summary: "Print version and build details",
 		run: func(c *cmdCtx) error {
-			fmt.Fprintf(c.out, "rkflash %s\n", version)
+			printVersion(c.out)
 			return nil
 		},
 	})

@@ -62,7 +62,9 @@ jobs:
           ext=""
           [[ "$GOOS" == windows ]] && ext=".exe"
           mkdir -p dist
-          go build -trimpath -ldflags "-s -w -X main.version=${version}" \
+          date="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          go build -trimpath \
+            -ldflags "-s -w -X main.version=${version} -X main.commit=${GITHUB_SHA} -X main.buildDate=${date}" \
             -o "dist/rkflash-${GOOS}-${ARCH}${ext}" ./cmd/rkflash
           ls -l dist
       - uses: actions/upload-artifact@v4
