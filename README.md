@@ -27,7 +27,7 @@ Windows, the offline image commands work (`image-info`, `idb`, `pack`,
 
 ## Build and install
 
-Requires Go 1.22 or newer.
+Requires Go 1.27 or newer.
 
 ```bash
 go install github.com/jkandasa/rkflash/cmd/rkflash@latest
